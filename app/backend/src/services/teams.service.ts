@@ -5,7 +5,12 @@ import ITeamsService from '../interfaces/ITeamsService';
 
 export default class TeamsService implements ITeamsService {
   protected teamsModel: ModelStatic<Teams> = Teams;
+
   public async listAll(): Promise<ITeams[]> {
     return this.teamsModel.findAll();
+  }
+
+  public async listById(id: number): Promise<Teams | null> {
+    return this.teamsModel.findByPk(id);
   }
 }
