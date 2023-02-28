@@ -14,7 +14,7 @@ Teams.init({
     primaryKey: true,
     autoIncrement: true,
   },
-  title: {
+  teamName: {
     type: STRING,
     allowNull: false,
   },
