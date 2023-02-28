@@ -29,7 +29,7 @@ describe('Testes do endpoint /teams:', () => {
     expect(res.body).to.be.deep.eq(teamsListMock);
   });
   it('que GET /teams/:id tenha response com status 200 e o time correspondente ao id', async () => {
-    const res = await chai.request(app).get('teams/1');
+    const res = await chai.request(app).get('/teams/1');
     expect(res.status).to.be.eq(200);
     expect(res.body).to.be.deep.eq(teamsListMock[0]);
   });
