@@ -1,5 +1,8 @@
+import 'express-async-errors';
 import * as express from 'express';
 import teamsRoute from './routes/teams.route';
+import loginRoute from './routes/login.route';
+import ErrorHandler from './middlewares/errorHandler';
 
 class App {
   public app: express.Express;
@@ -24,6 +27,8 @@ class App {
     this.app.use(express.json());
     this.app.use(accessControl);
     this.app.use('/teams', teamsRoute);
+    this.app.use('/login', loginRoute);
+    this.app.use(ErrorHandler.handle);
   }
 
   public start(PORT: string | number):void {
