@@ -5,10 +5,14 @@ import ErrorBarrel from '../errors/ErrorBarrel';
 import ILoginService from '../interfaces/ILoginService';
 import Users from '../database/models/Users';
 import JwtToken from '../utils/Jwt';
+import IJwtToken from '../interfaces/IJwtToken';
 
 export default class LoginService implements ILoginService {
   protected usersModel: ModelStatic<Users> = Users;
-  private jwtToken: JwtToken = new JwtToken();
+  private _jwtToken: IJwtToken;
+  constructor(jwtToken: IJwtToken = new JwtToken()) {
+    this._jwtToken = jwtToken;
+  }
 
   public async auth(email: string, password: string) {
     emailValidate(email);
@@ -16,7 +20,12 @@ export default class LoginService implements ILoginService {
     const user = await this.usersModel.findOne({ where: { email } });
     if (!user) throw new ErrorBarrel('Invalid email or password', '401');
     const isValidPassword = bcrypt.compareSync(password, user.password);
-    if (!isValidPassword) throw new ErrorBarrel('Invalid email or password', '401');
-    return this.jwtToken.generate({ id: user.id, username: user.username });
+    if (!isValidPassword) { throw new ErrorBarrel('Invalid email or password', '401'); }
+    return this._jwtToken.generate({ id: user.id, username: user.username, role: user.role });
+  }
+
+  public async role(token: string) {
+    const { role } = this._jwtToken.authenticate(token);
+    return role;
   }
 }
