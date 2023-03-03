@@ -32,12 +32,19 @@ export default class MatchesController {
 
   public async registerMatch(req: Request, res: Response) {
     const { homeTeamId, awayTeamId, homeTeamGoals, awayTeamGoals } = req.body;
+    if ((homeTeamId === awayTeamId)) {
+      return res
+        .status(422)
+        .json({
+          message: 'It is not possible to create a match with two equal teams',
+        });
+    }
     const match = await this._matchesService.registerMatch(
       homeTeamId,
       awayTeamId,
       homeTeamGoals,
       awayTeamGoals,
     );
-    res.status(201).json(match);
+    return res.status(201).json(match);
   }
 }

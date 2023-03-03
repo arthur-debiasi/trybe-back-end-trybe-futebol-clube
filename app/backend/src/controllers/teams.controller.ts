@@ -1,9 +1,10 @@
 import { Request, Response } from 'express';
 import TeamsService from '../services/teams.service';
+import ITeamsService from '../interfaces/ITeamsService';
 
 export default class TeamsController {
-  private _teamsService: TeamsService;
-  constructor(teamService: TeamsService = new TeamsService()) {
+  private _teamsService: ITeamsService;
+  constructor(teamService: ITeamsService = new TeamsService()) {
     this._teamsService = teamService;
   }
 

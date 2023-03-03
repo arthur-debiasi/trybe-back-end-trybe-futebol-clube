@@ -1,9 +1,21 @@
 import { ModelStatic } from 'sequelize';
+import ErrorBarrel from '../errors/ErrorBarrel';
 import IMatchesService from '../interfaces/IMatchesService';
 import Matches from '../database/models/Matches';
+import Teams from '../database/models/Teams';
 
 export default class MatchesService implements IMatchesService {
   protected matchesModel: ModelStatic<Matches> = Matches;
+  protected teamsModel: ModelStatic<Teams> = Teams;
+
+  private async validateTeams(homeTeamId: string, awayTeamId:string) {
+    const isHomeTeam = await this.teamsModel.findByPk(homeTeamId);
+    const isAwayTeam = await this.teamsModel.findByPk(awayTeamId);
+    console.log(isHomeTeam);
+    if (isAwayTeam === null || isHomeTeam === null) {
+      throw new ErrorBarrel('There is no team with such id!', '404');
+    }
+  }
 
   public async listAll(): Promise<Matches[]> {
     return this.matchesModel.scope('byTeamName').findAll();
@@ -36,6 +48,7 @@ export default class MatchesService implements IMatchesService {
     homeTeamGoals: string,
     awayTeamGoals: string,
   ) {
+    await this.validateTeams(homeTeamId, awayTeamId);
     const match = await this.matchesModel.create({
       homeTeamId,
       awayTeamId,
