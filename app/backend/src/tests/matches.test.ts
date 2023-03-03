@@ -14,17 +14,15 @@ chai.use(chaiHttp);
 const { expect } = chai;
 
 describe('Testes do endpoint /teams:', () => {
-  beforeEach(() => {
-    sinon.stub(Matches, 'findAll').resolves(matchesListMock as unknown as Model[]);
-  });
+  beforeEach(() => sinon.stub(Matches, 'findAll').resolves(matchesListMock as unknown as Model[]));
 
   afterEach(() => {
     sinon.restore();
   });
 
   it('que GET /teams tenha response com status 200 e body com a lista de times', async () => {
-    const res = await chai.request(app).get('/teams');
-    expect(res.status).to.be.eq(200);
+    const res = await chai.request(app).get('/matches');
+    expect(res.status).to.be.eq(200);    
     expect(res.body).to.be.deep.eq(matchesListMock);
   });
 });

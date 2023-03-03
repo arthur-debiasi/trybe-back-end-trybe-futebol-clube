@@ -17,7 +17,6 @@ export default class LoginController {
   public async role(req: Request, res: Response) {
     const token = req.headers.authorization;
     if (!token) throw new ErrorBarrel('401', 'Token not found');
-    // return res.status(401).json({ message: 'Token not found' });
     const role = await this._loginService.role(token);
     res.status(200).json({ role });
   }

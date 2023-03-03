@@ -18,10 +18,18 @@ export default class LoginService implements ILoginService {
     emailValidate(email);
     passwordValidate(password);
     const user = await this.usersModel.findOne({ where: { email } });
-    if (!user) throw new ErrorBarrel('Invalid email or password', '401');
+    if (!user) {
+      throw new ErrorBarrel('Invalid email or password', '401');
+    }
     const isValidPassword = bcrypt.compareSync(password, user.password);
-    if (!isValidPassword) { throw new ErrorBarrel('Invalid email or password', '401'); }
-    return this._jwtToken.generate({ id: user.id, username: user.username, role: user.role });
+    if (!isValidPassword) {
+      throw new ErrorBarrel('Invalid email or password', '401');
+    }
+    return this._jwtToken.generate({
+      id: user.id,
+      username: user.username,
+      role: user.role,
+    });
   }
 
   public role(token: string) {

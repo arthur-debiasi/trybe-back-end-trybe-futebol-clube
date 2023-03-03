@@ -1,7 +1,7 @@
 import { ModelStatic } from "sequelize";
 import IMatch from "../../interfaces/IMatch";
 
-const matchesListMock : IMatch[] = [
+const matchesListMock = [
   {
     "id": 1,
     "homeTeamId": 16,

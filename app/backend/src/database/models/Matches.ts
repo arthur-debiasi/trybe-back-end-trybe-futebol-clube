@@ -56,6 +56,14 @@ Matches.init(
     sequelize: db,
     modelName: 'matches',
     timestamps: false,
+    scopes: {
+      byTeamName: {
+        include: [
+          { model: Teams, as: 'homeTeam', attributes: { exclude: ['id'] } },
+          { model: Teams, as: 'awayTeam', attributes: { exclude: ['id'] } },
+        ],
+      },
+    },
   },
 );
 

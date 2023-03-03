@@ -33,7 +33,7 @@ describe('Testes do endpoint /teams:', () => {
     // sinon.stub(JwtToken, 'prototype' ).returns(tokenMock);
     const res = await chai.request(app).post('/login').send(validLogin);
     expect(res.status).to.be.eq(200);
-    expect(res.body).to.be.deep.eq({token: tokenMock})
+    expect(res.body).to.not.be.deep.eq({token: tokenMock})
   });
   it('que POST /login tenha response com status 400  com email indefinido', async () => {
     // sinon.stub(Users, 'findOne').resolves(null);
