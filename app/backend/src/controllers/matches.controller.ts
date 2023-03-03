@@ -22,8 +22,22 @@ export default class MatchesController {
   }
 
   public async updateGoals(req: Request, res: Response) {
-    const { body: { homeTeamGoals, awayTeamGoals }, params: { id } } = req;
+    const {
+      body: { homeTeamGoals, awayTeamGoals },
+      params: { id },
+    } = req;
     await this._matchesService.updateGoals(id, homeTeamGoals, awayTeamGoals);
     return res.status(200).json('çalalalala ahjahahah');
+  }
+
+  public async registerMatch(req: Request, res: Response) {
+    const { homeTeamId, awayTeamId, homeTeamGoals, awayTeamGoals } = req.body;
+    const match = await this._matchesService.registerMatch(
+      homeTeamId,
+      awayTeamId,
+      homeTeamGoals,
+      awayTeamGoals,
+    );
+    res.status(201).json(match);
   }
 }
