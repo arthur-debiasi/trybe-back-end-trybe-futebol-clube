@@ -1,6 +1,8 @@
 interface IMatchesService {
   listAll(): void;
-  // listAllByProgress(inProgress: boolean): void;
+  updateGoals(id:string, homeTeamGoals: string, awayTeamGoals: string): void;
+  listAllByProgress(inProgress: boolean): void;
+  patchProgress(id: string): void;
 }
 
 export default IMatchesService;

@@ -16,4 +16,8 @@ export default class MatchesService implements IMatchesService {
   public async patchProgress(id: string) {
     this.matchesModel.update({ inProgress: false }, { where: { id } });
   }
+
+  public async updateGoals(id:string, homeTeamGoals: string, awayTeamGoals: string) {
+    this.matchesModel.update({ homeTeamGoals, awayTeamGoals }, { where: { id } });
+  }
 }
