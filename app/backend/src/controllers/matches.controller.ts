@@ -14,4 +14,10 @@ export default class MatchesController {
       : await this._matchesService.listAll();
     res.status(200).json(matchesList);
   }
+
+  public async patchProgress(req: Request, res: Response) {
+    const { id } = req.params;
+    await this._matchesService.patchProgress(id);
+    return res.status(200).json({ message: 'Finished' });
+  }
 }

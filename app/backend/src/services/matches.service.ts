@@ -12,4 +12,8 @@ export default class MatchesService implements IMatchesService {
   public async listAllByProgress(inProgress: boolean) {
     return this.matchesModel.scope('byTeamName').findAll({ where: { inProgress } });
   }
+
+  public async patchProgress(id: string) {
+    this.matchesModel.update({ inProgress: false }, { where: { id } });
+  }
 }

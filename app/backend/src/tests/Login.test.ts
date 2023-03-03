@@ -30,7 +30,7 @@ describe('Testes do endpoint /teams:', () => {
 
   it('que POST /login tenha response com status 200 com email e password válidos', async () => {
     sinon.stub(Users, 'findOne').resolves(userModel as Users);
-    // sinon.stub(JwtToken, 'prototype' ).returns(tokenMock);
+    sinon.stub(new JwtToken(), 'generate' ).returns(tokenMock);
     const res = await chai.request(app).post('/login').send(validLogin);
     expect(res.status).to.be.eq(200);
     expect(res.body).to.not.be.deep.eq({token: tokenMock})
