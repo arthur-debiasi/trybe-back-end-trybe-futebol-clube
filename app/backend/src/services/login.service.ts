@@ -24,7 +24,7 @@ export default class LoginService implements ILoginService {
     return this._jwtToken.generate({ id: user.id, username: user.username, role: user.role });
   }
 
-  public async role(token: string) {
+  public role(token: string) {
     const { role } = this._jwtToken.authenticate(token);
     return role;
   }

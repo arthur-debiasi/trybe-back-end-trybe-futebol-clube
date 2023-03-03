@@ -3,6 +3,7 @@ import * as express from 'express';
 import teamsRoute from './routes/teams.route';
 import loginRoute from './routes/login.route';
 import ErrorHandler from './middlewares/errorHandler';
+import matchesRoute from './routes/matches.route';
 
 class App {
   public app: express.Express;
@@ -28,6 +29,7 @@ class App {
     this.app.use(accessControl);
     this.app.use('/teams', teamsRoute);
     this.app.use('/login', loginRoute);
+    this.app.use('/matches', matchesRoute);
     this.app.use(ErrorHandler.handle);
   }
 

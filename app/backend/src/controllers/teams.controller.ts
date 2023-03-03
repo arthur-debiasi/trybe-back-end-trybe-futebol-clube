@@ -14,7 +14,7 @@ export default class TeamsController {
 
   public async listById(req: Request, res: Response) {
     const teamsList = await this._teamsService.listById(Number(req.params.id));
-    if (!teamsList) { return res.status(404).json({ message: 'Product not found' }); }
+    if (!teamsList) { return res.status(404).json({ message: 'Team not found' }); }
     res.status(200).json(teamsList);
   }
 }
