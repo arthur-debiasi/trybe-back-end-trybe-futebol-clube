@@ -63,6 +63,8 @@ Matches.init(
           { model: Teams, as: 'awayTeam', attributes: { exclude: ['id'] } },
         ],
       },
+      finished: { where: { inProgress: false } },
+
     },
   },
 );
