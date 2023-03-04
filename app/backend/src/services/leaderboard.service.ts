@@ -10,12 +10,9 @@ export default class LeaderboardService implements ILeaderboardService {
   protected _teamsModel: ModelStatic<Teams> = Teams;
 
   public async listAll() {
-    const teams = JSON.parse(JSON.stringify(await this._teamsModel.findAll()));
-    const matches = JSON.parse(
-      JSON.stringify(
-        await this._matchesModel.scope('byTeamName').scope('finished').findAll(),
-      ),
-    );
+    const teams = await this._teamsModel.findAll();
+    const matches = await this._matchesModel.scope('byTeamName').scope('finished').findAll();
+    console.log(JSON.parse(JSON.stringify(matches)));
     const leaderboard = getLeaderboard(teams, matches);
     return getClassifiedLeaderboard(leaderboard);
   }

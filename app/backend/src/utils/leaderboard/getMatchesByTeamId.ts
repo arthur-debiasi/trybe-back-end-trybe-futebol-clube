@@ -1,6 +1,6 @@
-import IMatch from '../../interfaces/IMatch';
+import Matches from '../../database/models/Matches';
 
-const getMatchesByTeamId = (teamId: number, matches: IMatch[]) => matches.filter(
+const getMatchesByTeamId = (teamId: number, matches: Matches[]) => matches.filter(
   ({ homeTeamId, awayTeamId }) =>
     homeTeamId === teamId || awayTeamId === teamId,
 );

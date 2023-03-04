@@ -1,7 +1,7 @@
-import IMatch from '../../interfaces/IMatch';
+import Matches from '../../database/models/Matches';
 import getMatchesByTeamId from './getMatchesByTeamId';
 
-export default function getGoalsFavor(teamId: number, matches: IMatch[]) {
+export default function getGoalsFavor(teamId: number, matches: Matches[]) {
   let goals = 0;
   const matchesByTeamId = getMatchesByTeamId(teamId, matches);
   matchesByTeamId.forEach((e) => {

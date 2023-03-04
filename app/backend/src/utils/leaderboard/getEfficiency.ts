@@ -1,8 +1,8 @@
-import IMatch from '../../interfaces/IMatch';
+import Matches from '../../database/models/Matches';
 import getTotalGames from './getTotalGames';
 import getTotalPoints from './getTotalPoints';
 
-export default function getEfficiency(teamId: number, matches: IMatch[]) {
+export default function getEfficiency(teamId: number, matches: Matches[]) {
   const totalPoints = getTotalPoints(teamId, matches);
   const totalGames = getTotalGames(teamId, matches);
   const efficiency = (totalPoints / (totalGames * 3)) * 100;

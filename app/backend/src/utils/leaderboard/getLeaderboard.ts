@@ -1,4 +1,3 @@
-import IMatch from '../../interfaces/IMatch';
 import getEfficiency from './getEfficiency';
 import getGoalsBalance from './getGoalsBalance';
 import getGoalsFavor from './getGoalsFavor';
@@ -9,8 +8,9 @@ import getTotalLosses from './getTotalLosses';
 import getTotalPoints from './getTotalPoints';
 import getTotalVictories from './getTotalVictories';
 import Teams from '../../database/models/Teams';
+import Matches from '../../database/models/Matches';
 
-const getLeaderboard = (teams: Teams[], matches: IMatch[]) => teams.map((e: Teams) => ({
+const getLeaderboard = (teams: Teams[], matches: Matches[]) => teams.map((e: Teams) => ({
   name: e.teamName.toString(),
   totalPoints: getTotalPoints(e.id, matches),
   totalGames: getTotalGames(e.id, matches),

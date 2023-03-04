@@ -23,7 +23,7 @@ chai.use(chaiHttp);
 
 const { expect } = chai;
 
-describe('Testes do endpoint /teams:', () => {
+describe('Testes do endpoint /login:', () => {
   afterEach(() => {
     sinon.restore();
   });
