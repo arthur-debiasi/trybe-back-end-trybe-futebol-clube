@@ -10,19 +10,8 @@ loginRoute.use(express.json());
 
 const loginController = new LoginController();
 
-loginRoute.get(
-  '/role',
-  tokenValidation,
-  (req: express.Request, res: express.Response) =>
-    loginController.role(req, res),
-);
+loginRoute.get('/role', tokenValidation, loginController.role);
 
-loginRoute.post(
-  '/',
-  (req: express.Request, res: express.Response, next: express.NextFunction) =>
-    loginFields(req, res, next),
-  (req: express.Request, res: express.Response) =>
-    loginController.auth(req, res),
-);
+loginRoute.post('/', loginFields, loginController.auth);
 
 export default loginRoute;

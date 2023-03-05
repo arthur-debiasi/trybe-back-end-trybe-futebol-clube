@@ -14,7 +14,7 @@ export default class LoginService implements ILoginService {
     this._jwtToken = jwtToken;
   }
 
-  public async auth(email: string, password: string) {
+  public auth = async (email: string, password: string) => {
     emailValidate(email);
     passwordValidate(password);
     const user = await this.usersModel.findOne({ where: { email } });
@@ -30,10 +30,7 @@ export default class LoginService implements ILoginService {
       username: user.username,
       role: user.role,
     });
-  }
+  };
 
-  public role(token: string) {
-    const { role } = this._jwtToken.authenticate(token);
-    return role;
-  }
+  public role = (token:string) => this._jwtToken.authenticate(token);
 }

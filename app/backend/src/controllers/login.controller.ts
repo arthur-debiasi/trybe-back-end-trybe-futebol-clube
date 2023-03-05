@@ -14,10 +14,10 @@ export default class LoginController {
     res.status(200).json({ token });
   };
 
-  public role = async (req: Request, res: Response) => {
+  public role = (req: Request, res: Response) => {
     const token = req.headers.authorization;
     if (!token) throw new ErrorBarrel('401', 'Token not found');
-    const role = await this._loginService.role(token);
+    const { role } = this._loginService.role(token);
     res.status(200).json({ role });
   };
 }
