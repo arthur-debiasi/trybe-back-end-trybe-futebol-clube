@@ -18,8 +18,7 @@ matchesRoute.patch(
   (req: Request, res: Response) => matchesController.patchProgress(req, res),
 );
 
-matchesRoute.get('/', (req: Request, res: Response) =>
-  matchesController.listAll(req, res));
+matchesRoute.get('/', matchesController.getAll);
 
 matchesRoute.post('/', tokenValidation, (req: Request, res: Response) =>
   matchesController.registerMatch(req, res));

@@ -17,15 +17,11 @@ export default class MatchesService implements IMatchesService {
     }
   }
 
-  public async listAll(): Promise<Matches[]> {
-    return this.matchesModel.scope('byTeamName').findAll();
-  }
+  public getTeams = async () => this.matchesModel.scope('byTeamName').findAll();
 
-  public async listAllByProgress(inProgress: boolean) {
-    return this.matchesModel
-      .scope('byTeamName')
-      .findAll({ where: { inProgress } });
-  }
+  public getTeamsByProgress = async (inProgress: boolean) => this.matchesModel
+    .scope('byTeamName')
+    .findAll({ where: { inProgress } });
 
   public async patchProgress(id: string) {
     this.matchesModel.update({ inProgress: false }, { where: { id } });
