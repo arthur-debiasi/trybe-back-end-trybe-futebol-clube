@@ -8,7 +8,7 @@ export default class MatchesService implements IMatchesService {
   protected matchesModel: ModelStatic<Matches> = Matches;
   protected teamsModel: ModelStatic<Teams> = Teams;
 
-  private async validateTeams(homeTeamId: string, awayTeamId:string) {
+  private async validateTeams(homeTeamId: string, awayTeamId: string) {
     const isHomeTeam = await this.teamsModel.findByPk(homeTeamId);
     const isAwayTeam = await this.teamsModel.findByPk(awayTeamId);
     console.log(isHomeTeam);
@@ -19,39 +19,30 @@ export default class MatchesService implements IMatchesService {
 
   public getTeams = async () => this.matchesModel.scope('byTeamName').findAll();
 
-  public getTeamsByProgress = async (inProgress: boolean) => this.matchesModel
-    .scope('byTeamName')
-    .findAll({ where: { inProgress } });
+  public getTeamsByProgress = async (inProgress: boolean) =>
+    this.matchesModel.scope('byTeamName').findAll({ where: { inProgress } });
 
-  public async patchProgress(id: string) {
+  public patchMatchProgressById = async (id: string) =>
     this.matchesModel.update({ inProgress: false }, { where: { id } });
-  }
 
-  public async updateGoals(
+  public updateMatchGoalsById = async (
     id: string,
     homeTeamGoals: string,
     awayTeamGoals: string,
-  ) {
-    this.matchesModel.update(
-      { homeTeamGoals, awayTeamGoals },
-      { where: { id } },
-    );
-  }
+  ) =>
+    this.matchesModel.update({ homeTeamGoals, awayTeamGoals }, { where: { id } });
 
-  public async registerMatch(
+  public registerMatch = async (
     homeTeamId: string,
     awayTeamId: string,
     homeTeamGoals: string,
     awayTeamGoals: string,
-  ) {
+  ) => {
     await this.validateTeams(homeTeamId, awayTeamId);
-    const match = await this.matchesModel.create({
-      homeTeamId,
-      awayTeamId,
-      homeTeamGoals,
-      awayTeamGoals,
-      inProgress: true,
-    });
+
+    const match = await this.matchesModel
+      .create({ homeTeamId, awayTeamId, homeTeamGoals, awayTeamGoals, inProgress: true });
+
     return match;
-  }
+  };
 }

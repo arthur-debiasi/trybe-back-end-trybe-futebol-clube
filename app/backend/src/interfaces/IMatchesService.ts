@@ -1,8 +1,8 @@
 interface IMatchesService {
   getTeams(): void;
-  updateGoals(id: string, homeTeamGoals: string, awayTeamGoals: string): void;
+  updateMatchGoalsById(id: string, homeTeamGoals: string, awayTeamGoals: string): void;
   getTeamsByProgress(inProgress: boolean): void;
-  patchProgress(id: string): void;
+  patchMatchProgressById(id: string): void;
   registerMatch(
     homeTeamId: string,
     awayTeamId: string,
