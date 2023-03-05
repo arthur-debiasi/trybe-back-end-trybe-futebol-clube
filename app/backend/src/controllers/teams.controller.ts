@@ -8,13 +8,13 @@ export default class TeamsController {
     this._teamsService = teamService;
   }
 
-  public async listAll(_req: Request, res: Response) {
-    const teamsList = await this._teamsService.listAll();
+  public getTeams = async (_req: Request, res: Response) => {
+    const teamsList = await this._teamsService.getTeams();
     res.status(200).json(teamsList);
-  }
+  };
 
-  public async listById(req: Request, res: Response) {
-    const teamsList = await this._teamsService.listById(Number(req.params.id));
-    res.status(200).json(teamsList);
-  }
+  public getTeamsById = async (req: Request, res: Response) => {
+    const team = await this._teamsService.getTeamsById(Number(req.params.id));
+    res.status(200).json(team);
+  };
 }

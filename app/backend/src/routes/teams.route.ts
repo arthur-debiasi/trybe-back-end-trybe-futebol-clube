@@ -10,10 +10,8 @@ teamsRoute.use(express.json());
 const teamService = new TeamsService();
 const teamsController = new TeamsController(teamService);
 
-teamsRoute.get('/:id', (req: express.Request, res: express.Response) =>
-  teamsController.listById(req, res));
+teamsRoute.get('/:id', teamsController.getTeamsById);
 
-teamsRoute.get('/', (req: express.Request, res: express.Response) =>
-  teamsController.listAll(req, res));
+teamsRoute.get('/', teamsController.getTeams);
 
 export default teamsRoute;

@@ -11,11 +11,13 @@ export default class TeamsService implements ITeamsService {
     return this.teamsModel.findAll();
   }
 
-  public async listById(id: number): Promise<Teams> {
+  public getTeams = (): Promise<Teams[]> => this.teamsModel.findAll();
+
+  public getTeamsById = async (id: number): Promise<Teams> => {
     const team = await this.teamsModel.findByPk(id);
     if (!team) {
       throw new ErrorBarrel('Team not found', '404');
     }
     return team;
-  }
+  };
 }
