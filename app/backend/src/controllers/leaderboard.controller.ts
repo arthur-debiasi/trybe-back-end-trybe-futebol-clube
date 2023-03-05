@@ -9,7 +9,17 @@ export default class TeamsController {
   }
 
   public async getHomeLeaderboard(req: Request, res: Response) {
-    const leaderboard = await this._leaderboardService.getHomeLeaderboard();
+    const leaderboard = await this._leaderboardService.getLeaderboard('home');
     return res.status(200).json(leaderboard);
   }
+
+  public getAwayLeaderboard = async (req: Request, res: Response) => {
+    const leaderboard = await this._leaderboardService.getLeaderboard('away');
+    return res.status(200).json(leaderboard);
+  };
+
+  public getFullLeaderboard = async (req: Request, res: Response) => {
+    const leaderboard = await this._leaderboardService.getLeaderboard(undefined);
+    return res.status(200).json(leaderboard);
+  };
 }

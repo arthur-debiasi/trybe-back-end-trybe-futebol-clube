@@ -12,7 +12,7 @@ import Matches from '../../database/models/Matches';
 
 type TFilter = 'home' | 'away' | undefined;
 
-const getLeaderboard = (
+const getLeaderboardByFilter = (
   teams: Teams[],
   matches: Matches[],
   filter: TFilter,
@@ -30,4 +30,4 @@ const getLeaderboard = (
     efficiency: getEfficiency(e.id, matches, filter),
   }));
 
-export default getLeaderboard;
+export default getLeaderboardByFilter;

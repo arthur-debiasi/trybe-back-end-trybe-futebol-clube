@@ -10,7 +10,7 @@ export default function getGoalsOwn(teamId: number, matches: Matches[], filter: 
 
   matchesByTeamId.forEach((e) => {
     if (e.homeTeamId === teamId) homeGoals += e.awayTeamGoals;
-    if (e.homeTeamId === teamId) awayGoals += e.homeTeamGoals;
+    if (e.awayTeamId === teamId) awayGoals += e.homeTeamGoals;
   });
 
   if (filter === 'home') return homeGoals;
