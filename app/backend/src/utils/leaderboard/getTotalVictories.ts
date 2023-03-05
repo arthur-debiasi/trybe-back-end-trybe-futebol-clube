@@ -1,17 +1,24 @@
 import Matches from '../../database/models/Matches';
 import getMatchesByTeamId from './getMatchesByTeamId';
+import TFilter from './types/leaderboardTypes';
 
-export default function getTotalVictories(teamId: number, matches: Matches[]) {
-  let victories = 0;
-  const matchesByTeamId = getMatchesByTeamId(teamId, matches);
+export default function getTotalVictories(teamId: number, matches: Matches[], filter: TFilter) {
+  const matchesByTeamId = getMatchesByTeamId(teamId, matches, filter);
+
+  let homeVictories = 0;
+  let awayVictories = 0;
+
   matchesByTeamId.forEach((e:Matches) => {
     if (e.homeTeamId === teamId && e.homeTeamGoals > e.awayTeamGoals) {
-      victories += 1;
+      homeVictories += 1;
     }
     if (e.awayTeamId === teamId && e.awayTeamGoals > e.homeTeamGoals) {
-      victories += 1;
+      awayVictories += 1;
     }
   });
 
-  return victories;
+  if (filter === 'home') return homeVictories;
+  if (filter === 'away') return awayVictories;
+
+  return homeVictories + awayVictories;
 }

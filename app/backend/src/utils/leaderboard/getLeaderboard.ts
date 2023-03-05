@@ -10,17 +10,24 @@ import getTotalVictories from './getTotalVictories';
 import Teams from '../../database/models/Teams';
 import Matches from '../../database/models/Matches';
 
-const getLeaderboard = (teams: Teams[], matches: Matches[]) => teams.map((e: Teams) => ({
-  name: e.teamName.toString(),
-  totalPoints: getTotalPoints(e.id, matches),
-  totalGames: getTotalGames(e.id, matches),
-  totalVictories: getTotalVictories(e.id, matches),
-  totalDraws: getTotalDraws(e.id, matches),
-  totalLosses: getTotalLosses(e.id, matches),
-  goalsFavor: getGoalsFavor(e.id, matches),
-  goalsOwn: getGoalsOwn(e.id, matches),
-  goalsBalance: getGoalsBalance(e.id, matches),
-  efficiency: getEfficiency(e.id, matches),
-}));
+type TFilter = 'home' | 'away' | undefined;
+
+const getLeaderboard = (
+  teams: Teams[],
+  matches: Matches[],
+  filter: TFilter,
+) =>
+  teams.map((e: Teams) => ({
+    name: e.teamName.toString(),
+    totalPoints: getTotalPoints(e.id, matches, filter),
+    totalGames: getTotalGames(e.id, matches, filter),
+    totalVictories: getTotalVictories(e.id, matches, filter),
+    totalDraws: getTotalDraws(e.id, matches, filter),
+    totalLosses: getTotalLosses(e.id, matches, filter),
+    goalsFavor: getGoalsFavor(e.id, matches, filter),
+    goalsOwn: getGoalsOwn(e.id, matches, filter),
+    goalsBalance: getGoalsBalance(e.id, matches, filter),
+    efficiency: getEfficiency(e.id, matches, filter),
+  }));
 
 export default getLeaderboard;

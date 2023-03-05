@@ -1,7 +1,7 @@
 // import Matches from '../database/models/Matches';
 
 interface ILeaderboardService {
-  listAll(): void;
+  getHomeLeaderboard(): void;
 }
 
 export default ILeaderboardService;

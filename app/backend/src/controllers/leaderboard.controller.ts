@@ -8,8 +8,8 @@ export default class TeamsController {
     this._leaderboardService = leaderboardService;
   }
 
-  public async listAll(req: Request, res: Response) {
-    const leaderboard = await this._leaderboardService.listAll();
+  public async getHomeLeaderboard(req: Request, res: Response) {
+    const leaderboard = await this._leaderboardService.getHomeLeaderboard();
     return res.status(200).json(leaderboard);
   }
 }

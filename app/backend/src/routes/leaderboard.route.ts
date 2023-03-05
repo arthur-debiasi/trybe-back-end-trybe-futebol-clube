@@ -9,6 +9,8 @@ leaderboardRoute.use(express.json());
 const leaderboardController = new LeaderboardController();
 
 leaderboardRoute.get('/home', (req: Request, res: Response) =>
-  leaderboardController.listAll(req, res));
+  leaderboardController.getHomeLeaderboard(req, res));
+// leaderboardRoute.get('/', (req: Request, res: Response) =>
+//   leaderboardController.listAll(req, res));
 
 export default leaderboardRoute;
