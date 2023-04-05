@@ -10,7 +10,7 @@ To add a match, a token is required, so the person must be logged in to make cha
 
 ## 🚀 Built With
 
-> [![Node.js][Node.js]][Node.js-url][![MySQL][MySQL]][MySQL-url][![Typescript][Typescript]][Typescript-url][![Docker][Docker]][Docker-url]
+> [![Node.js][Node.js]][Node.js-url][![sequelize][sequelize]][sequelize-url][![MySQL][MySQL]][MySQL-url][![Typescript][Typescript]][Typescript-url][![Docker][Docker]][Docker-url]
 
 ## 📌 Skills
 
