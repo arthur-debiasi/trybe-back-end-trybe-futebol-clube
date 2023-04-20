@@ -8,6 +8,11 @@ In this project, the back-end is dockerized and uses data modeling through Seque
 
 To add a match, a token is required, so the person must be logged in to make changes and be able to populate the standings table.
 
+## ❗ Caveats
+
+- The frontend of this project is entirely authored by Trybe(https://www.betrybe.com/);
+- My task was build the backend in order to become a complete application;
+
 ## 🚀 Built With
 
 > [![Node.js][Node.js]][Node.js-url][![sequelize][sequelize]][sequelize-url][![MySQL][MySQL]][MySQL-url][![Typescript][Typescript]][Typescript-url][![Docker][Docker]][Docker-url]
