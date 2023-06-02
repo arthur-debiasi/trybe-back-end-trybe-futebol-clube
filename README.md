@@ -33,26 +33,13 @@ npm install
 
 ### ⚡ Running the Aplication
 
-Initially, you need to configure a MySQL database:
-
-- Defining environment variables in an .env file;
-- Creating the database and tables with:
+You can run the entire application with only one command! Open an integrated terminal on root directory and run this command:
 
 ```bash
-npm run restore
+npm run compose:up
 ``` 
 
-If desired, the application can be started in development mode with:
-
-```bash
-npm run dev
-```
-
-The application can be started with:
-
-```bash
-npm start
-```
+You can access `localhost:3000` via browser to use the client application
 
 ### 🧪 Testing the Aplication
 
