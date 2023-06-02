@@ -39,6 +39,12 @@ You can run the entire application with only one command! Open an integrated ter
 npm run compose:up
 ``` 
 
+Simmilarly, you can remove these containers with:
+
+```bash
+npm run compose:down
+``` 
+
 You can access `localhost:3000` via browser to use the client application
 
 ### 🧪 Testing the Aplication
