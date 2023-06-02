@@ -1,4 +1,4 @@
-# [Trybe](https://www.betrybe.com/) Project - Trybesmith.
+# [Trybe](https://www.betrybe.com/) Project - Trybe Futebol Clube.
 
 ## 💻 Project
 
